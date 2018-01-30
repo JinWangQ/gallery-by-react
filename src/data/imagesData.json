@@ -1,34 +1,34 @@
 [{
 	"fileName": "1.jpg",
-	"title": "road trip1",
+	"title": "Road Trip",
 	"desc": "road trip1"
 }, {
 	"fileName": "2.jpg",
-	"title": "hiking1",
+	"title": "Hiking1",
 	"desc": "hiking1"
 }, {
 	"fileName": "3.jpg",
-	"title": "huge tree",
+	"title": "Huge Tree",
 	"desc": "huge tree"
 }, {
 	"fileName": "4.jpg",
-	"title": "by the sea",
+	"title": "By The Sea",
 	"desc": "by the sea"
 }, {
 	"fileName": "5.jpg",
-	"title": "hiking2",
+	"title": "Hiking",
 	"desc": "hiking2"
 }, {
 	"fileName": "6.jpg",
-	"title": "by the sea2",
+	"title": "By The Sea",
 	"desc": "by the sea2"
 }, {
 	"fileName": "7.jpg",
-	"title": "road trip3",
+	"title": "Road Trip",
 	"desc": "road trip3"
 }, {
 	"fileName": "8.jpg",
-	"title": "road trip4",
+	"title": "Road Trip",
 	"desc": "road trip4"
 }, {
 	"fileName": "9.jpg",
@@ -36,30 +36,30 @@
 	"desc": "huge tree2"
 }, {
 	"fileName": "10.jpg",
-	"title": "historical site1",
+	"title": "Historical Site",
 	"desc": "historical site1"
 }, {
 	"fileName": "11.jpg",
-	"title": "outside store",
+	"title": "Outside Store",
 	"desc": "outside store"
 }, {
 	"fileName": "12.jpg",
-	"title": "outside coffee shop",
+	"title": "Outside Coffee Shop",
 	"desc": "outside coffee shop"
 }, {
 	"fileName": "13.jpg",
-	"title": "hot spring and steamed egg",
-	"desc": "hot spring and steamed egg"
+	"title": "Hot Spring and Steamed Eggs",
+	"desc": "hot spring and steamed eggs"
 }, {
 	"fileName": "14.jpg",
-	"title": "camping",
+	"title": "Camping",
 	"desc": "camping"
 }, {
 	"fileName": "15.jpg",
-	"title": "drifting",
+	"title": "Drifting",
 	"desc": "drifting"
 }, {
 	"fileName": "16.jpg",
-	"title": "historical site2",
+	"title": "Historical Site",
 	"desc": "historical site2"
 }]
