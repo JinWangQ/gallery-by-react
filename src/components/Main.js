@@ -38,6 +38,25 @@ function get30DegRandom() {
 }
 
 class ImgFigure extends React.Component {
+
+	constructor(props) {
+		super(props);
+		this.handleClick = this.handleClick.bind(this);
+	}
+
+	handleClick(e) {
+
+		if (this.props.arrange.isCenter) {
+			this.props.inverse();
+		} else {
+			this.props.center();
+		}
+
+
+		e.stopPropagation();
+		e.preventDefault();
+	}
+
 	render() {
 		var styleObj = {};
 
@@ -52,13 +71,25 @@ class ImgFigure extends React.Component {
 			}.bind(this));
 		}
 
+		if (this.props.arrange.isCenter) {
+			styleObj.zIndex = 11;
+		}
+
+		var imgFigureClassName = 'img-figure';
+		imgFigureClassName += this.props.arrange.isInverse ? ' is-inverse' : '';
+
 		return (
-			<figure className="img-figure" style={styleObj}>
+			<figure className={imgFigureClassName} style={styleObj} onClick={this.handleClick}>
 				<img src={this.props.data.imageURL}
 					alt={this.props.data.title}
 				/>
 				<figcaption>
 					<h2 className="img-title">{this.props.data.title}</h2>
+					<div className="img-back" onClick={this.handleClick}>
+						<p>
+							{this.props.data.desc}
+						</p>
+					</div>
 				</figcaption>
 			</figure>
 		);
@@ -90,12 +121,28 @@ class AppComponent extends React.Component {
 				// 		left: '0',
 				// 		top: '0'
 				// 	}
-				//  rotate: 0
+				//  rotate: 0,
+				// 	isInverse: false,
+				//	isCenter: false 
 				// }
 			]
 		};
 	}
+	/**
+	 * @param  {index of pic to be rotated}
+	 * @return {a closure function, return a function}
+	 */
+	inverse(index) {
+		return function() {
+			var imgArrangeArr = this.state.imgArrangeArr;
 
+			imgArrangeArr[index].isInverse = !imgArrangeArr[index].isInverse;
+
+			this.setState({
+				imgArrangeArr: imgArrangeArr
+			});
+		}.bind(this);
+	}
 	/**
 	 * rearrange all the pictures
 	 * @param  {the index of pic to be centered}
@@ -126,8 +173,12 @@ class AppComponent extends React.Component {
 
 		/*----position part----*/
 		// let pic in the center
-		imgArrangeCenterArr[0].pos = centerPos;
-		imgArrangeCenterArr[0].rotate = 0;
+		imgArrangeCenterArr[0] = {
+			pos: centerPos,
+			rotate: 0,
+			isCenter: true
+		}
+
 		//let pics in the up sec positioned
 		imgArrangeTopArr.forEach(function(value, index) {
 			imgArrangeTopArr[index] = {
@@ -135,7 +186,8 @@ class AppComponent extends React.Component {
 					top: getRangeRandom(vPosRangeTopY[0], vPosRangeTopY[1]),
 					left: getRangeRandom(vPosRangeX[0], vPosRangeX[1])
 				},
-				rotate: get30DegRandom()
+				rotate: get30DegRandom(),
+				isCenter: false
 			};
 		});
 
@@ -157,7 +209,8 @@ class AppComponent extends React.Component {
 					left: getRangeRandom(hPosRangeLORX[0], hPosRangeLORX[1]),
 					top: getRangeRandom(hPosRangeY[0], hPosRangeY[1])
 				},
-				rotate: get30DegRandom()
+				rotate: get30DegRandom(),
+				isCenter: false
 			};
 		}
 
@@ -170,6 +223,16 @@ class AppComponent extends React.Component {
 		this.setState({
 			imgArrangeArr: imgArrangeArr
 		})
+	}
+	/**
+	 * use rearrange() to center pic
+	 * @param  {index of pic to be centered}
+	 * @return {function}
+	 */
+	center(index) {
+		return function() {
+			this.rearrange(index);
+		}.bind(this);
 	}
 	/**
 	 * while component did mount
@@ -225,10 +288,12 @@ class AppComponent extends React.Component {
 						left: 0,
 						top: 0
 					},
-					rotate: 0
+					rotate: 0,
+					isInverse: false,
+					isCenter: false
 				}
 			}
-			imgFigures.push(<ImgFigure data={value} key={index} ref={'imgFigure' + index} arrange={this.state.imgArrangeArr[index]}/>);
+			imgFigures.push(<ImgFigure data={value} key={index} ref={'imgFigure' + index} arrange={this.state.imgArrangeArr[index]} inverse={this.inverse(index)} center={this.center(index)}/>);
 		}.bind(this));
 
 		return (
