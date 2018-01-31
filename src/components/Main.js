@@ -30,6 +30,12 @@ imagesData = (function getImageURL(imagesDataArray) {
 function getRangeRandom(low, high) {
 	return Math.floor(Math.random() * (high - low) + low);
 }
+/**
+ * @return {random degree between 0 and 30}
+ */
+function get30DegRandom() {
+	return ((Math.random() > 0.5 ? '' : '-') + Math.floor(Math.random() * 30));
+}
 
 class ImgFigure extends React.Component {
 	render() {
@@ -38,6 +44,12 @@ class ImgFigure extends React.Component {
 		//if props assigns the position of pic, use it
 		if (this.props.arrange.pos) {
 			styleObj = this.props.arrange.pos;
+		}
+		//if props assigns the rotation degree of pic, use it
+		if (this.props.arrange.rotate) {
+			(['-moz-', '-ms', '-webkit-', '']).forEach(function(value) {
+				styleObj[value + 'transform'] = 'rotate(' + this.props.arrange.rotate + 'deg)';
+			}.bind(this));
 		}
 
 		return (
@@ -78,11 +90,11 @@ class AppComponent extends React.Component {
 				// 		left: '0',
 				// 		top: '0'
 				// 	}
+				//  rotate: 0
 				// }
 			]
 		};
 	}
-
 
 	/**
 	 * rearrange all the pictures
@@ -102,24 +114,29 @@ class AppComponent extends React.Component {
 			vPosRangeX = vPosRange.x,
 
 			imgArrangeTopArr = [],
-			topImgNum = Math.floor(Math.random() * 2), // there would be 1 or 2 pics in top sec
+			topImgNum = Math.floor(Math.random() * 2), // there would be 0 or 1 pics in top sec
 			topImgSpliceIndex = 0, //the index of pic at top sec
 
-			imgArrangeCenterArr = imgArrangeArr.splice(centerIndex, 1);
-
-		// let the centerIndex in the center
-		imgArrangeCenterArr[0].pos = centerPos;
+			imgArrangeCenterArr = imgArrangeArr.splice(centerIndex, 1); //get the center pic
 
 		//get the info of pics in up sec
 		topImgSpliceIndex = Math.floor(Math.random() * (imgArrangeArr.length - topImgNum));
 		imgArrangeTopArr = imgArrangeArr.splice(topImgSpliceIndex, topImgNum);
 
+
+		/*----position part----*/
+		// let pic in the center
+		imgArrangeCenterArr[0].pos = centerPos;
+		imgArrangeCenterArr[0].rotate = 0;
 		//let pics in the up sec positioned
 		imgArrangeTopArr.forEach(function(value, index) {
-			imgArrangeTopArr[index].pos = {
-				top: getRangeRandom(vPosRangeTopY[0], vPosRangeTopY[1]),
-				left: getRangeRandom(vPosRangeX[0], vPosRangeX[1])
-			}
+			imgArrangeTopArr[index] = {
+				pos: {
+					top: getRangeRandom(vPosRangeTopY[0], vPosRangeTopY[1]),
+					left: getRangeRandom(vPosRangeX[0], vPosRangeX[1])
+				},
+				rotate: get30DegRandom()
+			};
 		});
 
 		// let pics in the left and right sec positioned
@@ -135,10 +152,13 @@ class AppComponent extends React.Component {
 				hPosRangeLORX = hPosRangeRigheSecX;
 			}
 
-			imgArrangeArr[i].pos = {
-				left: getRangeRandom(hPosRangeLORX[0], hPosRangeLORX[1]),
-				top: getRangeRandom(hPosRangeY[0], hPosRangeY[1])
-			}
+			imgArrangeArr[i] = {
+				pos: {
+					left: getRangeRandom(hPosRangeLORX[0], hPosRangeLORX[1]),
+					top: getRangeRandom(hPosRangeY[0], hPosRangeY[1])
+				},
+				rotate: get30DegRandom()
+			};
 		}
 
 		if (imgArrangeTopArr && imgArrangeTopArr[0]) {
@@ -204,7 +224,8 @@ class AppComponent extends React.Component {
 					pos: {
 						left: 0,
 						top: 0
-					}
+					},
+					rotate: 0
 				}
 			}
 			imgFigures.push(<ImgFigure data={value} key={index} ref={'imgFigure' + index} arrange={this.state.imgArrangeArr[index]}/>);
