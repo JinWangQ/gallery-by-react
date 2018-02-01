@@ -66,7 +66,7 @@ class ImgFigure extends React.Component {
 		}
 		//if props assigns the rotation degree of pic, use it
 		if (this.props.arrange.rotate) {
-			(['-moz-', '-ms', '-webkit-', '']).forEach(function(value) {
+			(['-moz-', '-ms-', '-webkit-', '']).forEach(function(value) {
 				styleObj[value + 'transform'] = 'rotate(' + this.props.arrange.rotate + 'deg)';
 			}.bind(this));
 		}
@@ -92,6 +92,20 @@ class ImgFigure extends React.Component {
 					</div>
 				</figcaption>
 			</figure>
+		);
+	}
+}
+/**
+ * controller unit
+ */
+class ControllerUnit extends React.Component {
+	handleClick(e) {
+		e.stopPropagation();
+		e.preventDefault();
+	}
+	render() {
+		return (
+			<span className="controller-unit" onClick={this.handleClick}></span>
 		);
 	}
 }
@@ -294,6 +308,7 @@ class AppComponent extends React.Component {
 				}
 			}
 			imgFigures.push(<ImgFigure data={value} key={index} ref={'imgFigure' + index} arrange={this.state.imgArrangeArr[index]} inverse={this.inverse(index)} center={this.center(index)}/>);
+			controllerUnits.push(<ControllerUnit/>);
 		}.bind(this));
 
 		return (

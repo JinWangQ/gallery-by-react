@@ -1,3 +1,13 @@
+
+@font-face {
+  font-family: 'iconfont';
+  src: url('../fonts/icons/iconfont.eot');
+  src: url('../fonts/icons/iconfont.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/icons/iconfont.woff') format('woff'),
+  url('../fonts/icons/iconfont.ttf') format('truetype'),
+  url('../fonts/icons/iconfont.svg#iconfont') format('svg');
+}
+
 html,body {
   width: 100%;
   height: 100%;
@@ -93,6 +103,48 @@ html,body {
   z-index: 101;
   width: 100%;
   text-align: center;
+
+  @at-root {
+    .controller-unit {
+      display: inline-block;
+      margin: 0 5px;
+      width: 30px;
+      height: 30px;
+
+      text-align: center;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #aaa;
+      border-radius: 50%;
+      
+      transform: scale(.5);
+      transition: transform .6s ease-in-out, background-color .3s;
+
+      &.is-center {
+        background-color: #888;
+
+        transform: scale(1);
+
+        &::after {
+          font-family: "iconfont";
+          color: #fff;
+          font-size: 80%;
+          line-height: 30px;
+          content: "\e600";
+
+          -webkit-font-smoothing: antialiased;
+          -moz-font-smoothing: greyscale;
+        }
+
+        &.is-inverse {
+          background-color: #555;
+          transform: rotateY(180deg)
+        }
+      }
+
+    }
+
+  }
 }
 /* controller -- end */
 
