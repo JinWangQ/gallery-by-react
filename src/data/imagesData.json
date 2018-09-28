@@ -1,35 +1,35 @@
 [{
 	"fileName": "1.jpg",
-	"title": "Road Trip",
-	"desc": "road trip1"
+	"title": "Beach",
+	"desc": "Beach"
 }, {
 	"fileName": "2.jpg",
-	"title": "Hiking1",
-	"desc": "hiking1"
+	"title": "Izumo Grand Shrine",
+	"desc": "Izumo Grand Shrine"
 }, {
 	"fileName": "3.jpg",
 	"title": "Historical Site",
 	"desc": "Historical Site"
 }, {
 	"fileName": "4.jpg",
-	"title": "By The Sea",
-	"desc": "by the sea"
+	"title": "Creek",
+	"desc": "Creek"
 }, {
 	"fileName": "5.jpg",
-	"title": "Hiking",
+	"title": "Starry Night",
 	"desc": "hiking2"
 }, {
 	"fileName": "6.jpg",
-	"title": "By The Sea",
-	"desc": "by the sea2"
+	"title": "Full Moon",
+	"desc": "Full Moon"
 }, {
 	"fileName": "7.jpg",
-	"title": "Road Trip",
-	"desc": "road trip3"
+	"title": "Nara",
+	"desc": "Deer in Nara"
 }, {
 	"fileName": "8.jpg",
-	"title": "Road Trip",
-	"desc": "road trip4"
+	"title": "Lizard",
+	"desc": "Lizard"
 }, {
 	"fileName": "9.jpg",
 	"title": "huge tree2",
@@ -52,14 +52,14 @@
 	"desc": "hot spring and steamed eggs"
 }, {
 	"fileName": "14.jpg",
-	"title": "Camping",
-	"desc": "camping"
+	"title": "Explore",
+	"desc": "Explore"
 }, {
 	"fileName": "15.jpg",
-	"title": "Drifting",
-	"desc": "drifting"
+	"title": "Friends",
+	"desc": "with butterflies"
 }, {
 	"fileName": "16.jpg",
-	"title": "Historical Site",
-	"desc": "historical site2"
+	"title": "Sending gifts",
+	"desc": "sending gifts to ants"
 }]
