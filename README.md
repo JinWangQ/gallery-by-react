@@ -10,7 +10,7 @@ Each button in the controller unit is linked to one specific pic.
 
 
 
-__See final Web Page at__ https://jinwangq.github.io/gallery-by-react/
+__See final Web Page at__ [here](https://jinwangq.github.io/gallery-by-react/)
 
 
 
